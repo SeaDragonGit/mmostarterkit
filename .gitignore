@@ -3,7 +3,7 @@
 .bundle
 .config
 .yardoc
-.idea
+.gitignore
 Gemfile.lock
 InstalledFiles
 _yardoc
@@ -21,3 +21,4 @@ tmp
 *.o
 *.a
 mkmf.log
+.idea/*
