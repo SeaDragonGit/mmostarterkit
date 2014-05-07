@@ -1,0 +1,13 @@
+//= require rails_admin/bootstrap/bootstrap-transition
+//= require mmo_starter_kit/bootstrap/bootstrap-affix
+//= require mmo_starter_kit/bootstrap/bootstrap-alert
+//= require mmo_starter_kit/bootstrap/bootstrap-button
+//= require mmo_starter_kit/bootstrap/bootstrap-carousel
+//= require mmo_starter_kit/bootstrap/bootstrap-collapse
+//= require mmo_starter_kit/bootstrap/bootstrap-dropdown
+//= require mmo_starter_kit/bootstrap/bootstrap-modal
+//= require mmo_starter_kit/bootstrap/bootstrap-scrollspy
+//= require mmo_starter_kit/bootstrap/bootstrap-tab
+//= require mmo_starter_kit/bootstrap/bootstrap-tooltip
+//= require mmo_starter_kit/bootstrap/bootstrap-popover
+//= require mmo_starter_kit/bootstrap/bootstrap-typeahead

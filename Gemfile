@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in mmostarterkit.gemspec
+# Specify your gem's dependencies in mmo_starter_kit.gemspec
 gemspec
 
-gem 'mmostarterkit', :path => ''
+gem 'mmo_starter_kit', :path => ''
