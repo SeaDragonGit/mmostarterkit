@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Time < RailsAdmin::Config::Fields::Types::Datetime
+        class Time < MmoStarterKit::Config::Fields::Types::Datetime
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           @format = :short
           @i18n_scope = [:time, :formats]
@@ -15,7 +15,7 @@ module MmoStarterKit
           }
 
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           def parse_input(params)
             params[name] = self.class.normalize(params[name], localized_time_format) if params[name].present?

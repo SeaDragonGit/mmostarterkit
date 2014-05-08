@@ -8,9 +8,9 @@ module MmoStarterKit
     module Fields
       # A container for groups of fields in edit views
       class Group
-        include RailsAdmin::Config::Proxyable
-        include RailsAdmin::Config::Configurable
-        include RailsAdmin::Config::Hideable
+        include MmoStarterKit::Config::Proxyable
+        include MmoStarterKit::Config::Configurable
+        include MmoStarterKit::Config::Hideable
 
         attr_reader :name, :abstract_model
         attr_accessor :section
@@ -28,7 +28,7 @@ module MmoStarterKit
         # Defines a configuration for a field by proxying parent's field method
         # and setting the field's group as self
         #
-        # @see RailsAdmin::Config::Fields.field
+        # @see MmoStarterKit::Config::Fields.field
         def field(name, type = nil, &block)
           field = section.field(name, type, &block)
           # Directly manipulate the variable instead of using the accessor
@@ -44,7 +44,7 @@ module MmoStarterKit
 
         # Defines configuration for fields by their type
         #
-        # @see RailsAdmin::Config::Fields.fields_of_type
+        # @see MmoStarterKit::Config::Fields.fields_of_type
         def fields_of_type(type, &block)
           selected = section.fields.select { |f| type == f.type }
           selected.each { |f| f.instance_eval(&block) } if block

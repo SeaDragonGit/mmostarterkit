@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class Show < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class Show < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :member do
           true

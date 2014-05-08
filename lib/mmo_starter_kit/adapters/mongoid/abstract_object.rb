@@ -2,7 +2,7 @@ require 'rails_admin/adapters/active_record/abstract_object'
 module MmoStarterKit
   module Adapters
     module Mongoid
-      class AbstractObject < RailsAdmin::Adapters::ActiveRecord::AbstractObject
+      class AbstractObject < MmoStarterKit::Adapters::ActiveRecord::AbstractObject
         def initialize(object)
           super
           object.associations.each do |name, association|

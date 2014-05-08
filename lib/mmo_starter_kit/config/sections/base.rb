@@ -8,11 +8,11 @@ module MmoStarterKit
     module Sections
       # Configuration of the show view for a new object
       class Base
-        include RailsAdmin::Config::Proxyable
-        include RailsAdmin::Config::Configurable
+        include MmoStarterKit::Config::Proxyable
+        include MmoStarterKit::Config::Configurable
 
-        include RailsAdmin::Config::HasFields
-        include RailsAdmin::Config::HasGroups
+        include MmoStarterKit::Config::HasFields
+        include MmoStarterKit::Config::HasGroups
 
         attr_reader :abstract_model
         attr_reader :parent, :root

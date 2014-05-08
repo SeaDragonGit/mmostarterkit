@@ -5,8 +5,8 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Carrierwave < RailsAdmin::Config::Fields::Types::FileUpload
-          RailsAdmin::Config::Fields::Types.register(self)
+        class Carrierwave < MmoStarterKit::Config::Fields::Types::FileUpload
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :thumb_method do
             @thumb_method ||= ((versions = bindings[:object].send(name).versions.keys).detect { |k| k.in?([:thumb, :thumbnail, 'thumb', 'thumbnail']) } || versions.first.to_s)

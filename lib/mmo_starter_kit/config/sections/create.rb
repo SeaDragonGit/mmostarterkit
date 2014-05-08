@@ -4,7 +4,7 @@ module MmoStarterKit
   module Config
     module Sections
       # Configuration of the edit view for a new object
-      class Create < RailsAdmin::Config::Sections::Edit
+      class Create < MmoStarterKit::Config::Sections::Edit
       end
     end
   end

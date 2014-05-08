@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class HistoryIndex < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class HistoryIndex < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :authorization_key do
           :history

@@ -11,7 +11,7 @@ module MmoStarterKit
 
     def install
       namespace = ask_for('Where do you want to mount mmo_starter_kit?', 'admin', _namespace)
-      route("mount RailsAdmin::Engine => '/#{namespace}', as: 'mmo_starter_kit'")
+      route("mount MmoStarterKit::Engine => '/#{namespace}', as: 'mmo_starter_kit'")
       template 'initializer.erb', 'config/initializers/mmo_starter_kit.rb'
     end
   end

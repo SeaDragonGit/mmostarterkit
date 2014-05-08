@@ -9,7 +9,7 @@ module MmoStarterKit
       # block is passed it will be evaluated in the context of the group
       def group(name, &block)
         group = parent.groups.detect { |g| name == g.name }
-        group ||= (parent.groups << RailsAdmin::Config::Fields::Group.new(self, name)).last
+        group ||= (parent.groups << MmoStarterKit::Config::Fields::Group.new(self, name)).last
         group.tap { |g| g.section = self }.instance_eval(&block) if block
         group
       end

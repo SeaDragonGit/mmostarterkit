@@ -2,9 +2,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Boolean < RailsAdmin::Config::Fields::Base
+        class Boolean < MmoStarterKit::Config::Fields::Base
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :view_helper do
             :check_box

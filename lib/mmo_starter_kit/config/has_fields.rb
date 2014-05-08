@@ -14,14 +14,14 @@ module MmoStarterKit
         # Specify field as virtual if type is not specifically set and field was not
         # found in default stack
         if field.nil? && type.nil?
-          field = (_fields << RailsAdmin::Config::Fields::Types.load(:string).new(self, name, nil)).last
+          field = (_fields << MmoStarterKit::Config::Fields::Types.load(:string).new(self, name, nil)).last
 
         # Register a custom field type if one is provided and it is different from
         # one found in default stack
         elsif type && type != (field.nil? ? nil : field.type)
           _fields.delete(field) unless field.nil?
           properties = abstract_model.properties.detect { |p| name == p.name }
-          field = (_fields <<  RailsAdmin::Config::Fields::Types.load(type).new(self, name, properties)).last
+          field = (_fields <<  MmoStarterKit::Config::Fields::Types.load(type).new(self, name, properties)).last
         end
 
         # If field has not been yet defined add some default properties
@@ -123,10 +123,10 @@ module MmoStarterKit
         return @_fields if @_fields
         return @_ro_fields if readonly && @_ro_fields
 
-        if self.class == RailsAdmin::Config::Sections::Base
-          @_ro_fields = @_fields = RailsAdmin::Config::Fields.factory(self)
+        if self.class == MmoStarterKit::Config::Sections::Base
+          @_ro_fields = @_fields = MmoStarterKit::Config::Fields.factory(self)
         else
-          # parent is RailsAdmin::Config::Model, recursion is on Section's classes
+          # parent is MmoStarterKit::Config::Model, recursion is on Section's classes
           @_ro_fields ||= parent.send(self.class.superclass.to_s.underscore.split('/').last)._fields(true).freeze
         end
         readonly ? @_ro_fields : (@_fields ||= @_ro_fields.collect(&:clone))

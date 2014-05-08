@@ -8,7 +8,7 @@
   sort = params[:sort]
   params.delete(:sort) if params[:sort] == @model_config.list.sort_by.to_s
 
-  export_action = RailsAdmin::Config::Actions.find(:export, { controller: self.controller, abstract_model: @abstract_model })
+  export_action = MmoStarterKit::Config::Actions.find(:export, { controller: self.controller, abstract_model: @abstract_model })
   export_action = nil unless export_action && authorized?(export_action.authorization_key, @abstract_model)
 
   properties = @model_config.list.with(controller: self.controller, view: self, object: @abstract_model.model.new).visible_fields
@@ -72,12 +72,12 @@
     $.filters.options.regional = {
     datePicker: {
     dateFormat: #{raw I18n.t("admin.misc.filter_date_format", default: I18n.t("admin.misc.filter_date_format", locale: :en)).to_json},
-    dayNames: #{raw RailsAdmin::Config::Fields::Types::Datetime.day_names.to_json},
-    dayNamesShort: #{raw RailsAdmin::Config::Fields::Types::Datetime.abbr_day_names.to_json},
-    dayNamesMin: #{raw RailsAdmin::Config::Fields::Types::Datetime.abbr_day_names.to_json},
+    dayNames: #{raw MmoStarterKit::Config::Fields::Types::Datetime.day_names.to_json},
+    dayNamesShort: #{raw MmoStarterKit::Config::Fields::Types::Datetime.abbr_day_names.to_json},
+    dayNamesMin: #{raw MmoStarterKit::Config::Fields::Types::Datetime.abbr_day_names.to_json},
     firstDay: "1",
-    monthNames: #{raw RailsAdmin::Config::Fields::Types::Datetime.month_names.to_json},
-    monthNamesShort: #{raw RailsAdmin::Config::Fields::Types::Datetime.abbr_month_names.to_json}
+    monthNames: #{raw MmoStarterKit::Config::Fields::Types::Datetime.month_names.to_json},
+    monthNamesShort: #{raw MmoStarterKit::Config::Fields::Types::Datetime.abbr_month_names.to_json}
     }
     }
 

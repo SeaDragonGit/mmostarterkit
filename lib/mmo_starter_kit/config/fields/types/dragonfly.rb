@@ -6,8 +6,8 @@ module MmoStarterKit
     module Fields
       module Types
         # Field type that supports Paperclip file uploads
-        class Dragonfly < RailsAdmin::Config::Fields::Types::FileUpload
-          RailsAdmin::Config::Fields::Types.register(self)
+        class Dragonfly < MmoStarterKit::Config::Fields::Types::FileUpload
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :image? do
             false unless value

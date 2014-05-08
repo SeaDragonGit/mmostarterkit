@@ -3,7 +3,7 @@ require 'builder'
 module MmoStarterKit
   module MainHelper
     def rails_admin_form_for(*args, &block)
-      options = args.extract_options!.reverse_merge(builder: RailsAdmin::FormBuilder)
+      options = args.extract_options!.reverse_merge(builder: MmoStarterKit::FormBuilder)
       form_for(*(args << options), &block) << after_nested_form_callbacks
     end
 
@@ -27,7 +27,7 @@ module MmoStarterKit
           sets[set_index] << properties[property_index]
           current_set_width += (properties[property_index].column_width || 120)
           property_index += 1
-          break if current_set_width >= RailsAdmin::Config.total_columns_width || property_index >= properties.length
+          break if current_set_width >= MmoStarterKit::Config.total_columns_width || property_index >= properties.length
         end
         set_index += 1
       end

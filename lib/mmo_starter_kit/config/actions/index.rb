@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class Index < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class Index < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :collection do
           true

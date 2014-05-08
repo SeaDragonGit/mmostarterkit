@@ -4,15 +4,15 @@ module MmoStarterKit
       # Default field factory loads fields based on their property type or
       # association type.
       #
-      # @see RailsAdmin::Config::Fields.registry
+      # @see MmoStarterKit::Config::Fields.registry
       mattr_reader :default_factory
       @@default_factory = lambda do |parent, properties, fields|
         # If it's an association
         if properties.association?
           association = parent.abstract_model.associations.detect { |a| a.name.to_s == properties.name.to_s }
-          field = RailsAdmin::Config::Fields::Types.load("#{association.polymorphic? ? :polymorphic : properties.type}_association").new(parent, properties.name, association)
+          field = MmoStarterKit::Config::Fields::Types.load("#{association.polymorphic? ? :polymorphic : properties.type}_association").new(parent, properties.name, association)
         else
-          field = RailsAdmin::Config::Fields::Types.load(properties.type).new(parent, properties.name, properties)
+          field = MmoStarterKit::Config::Fields::Types.load(properties.type).new(parent, properties.name, properties)
         end
         fields << field
         field
@@ -32,7 +32,7 @@ module MmoStarterKit
       # loads fields if their name is password. Third default factory is a
       # devise specific factory which loads fields for devise user models.
       #
-      # @see RailsAdmin::Config::Fields.register_factory
+      # @see MmoStarterKit::Config::Fields.register_factory
       # @see mmo_starter_kit/config/fields/factories/password.rb
       # @see mmo_starter_kit/config/fields/factories/devise.rb
       @@registry = [@@default_factory]
@@ -42,7 +42,7 @@ module MmoStarterKit
       # passed to the registered field factories which will populate the fields
       # array that will be returned.
       #
-      # @see RailsAdmin::Config::Fields.registry
+      # @see MmoStarterKit::Config::Fields.registry
       def self.factory(parent)
         fields = []
         # Load fields for all properties (columns)
@@ -69,7 +69,7 @@ module MmoStarterKit
       #
       # Factories are invoked lifo (last in first out).
       #
-      # @see RailsAdmin::Config::Fields.registry
+      # @see MmoStarterKit::Config::Fields.registry
       def self.register_factory(&block)
         @@registry.unshift(block)
       end

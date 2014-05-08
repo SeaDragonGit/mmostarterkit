@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class CKEditor < RailsAdmin::Config::Fields::Types::Text
+        class CKEditor < MmoStarterKit::Config::Fields::Types::Text
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           # If you want to have a different toolbar configuration for CKEditor
           # create your own custom config.js and override this configuration

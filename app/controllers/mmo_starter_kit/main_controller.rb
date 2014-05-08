@@ -1,19 +1,19 @@
 module MmoStarterKit
-  class MainController < RailsAdmin::ApplicationController
+  class MainController < MmoStarterKit::ApplicationController
     include ActionView::Helpers::TextHelper
-    include RailsAdmin::MainHelper
-    include RailsAdmin::ApplicationHelper
+    include MmoStarterKit::MainHelper
+    include MmoStarterKit::ApplicationHelper
 
     layout :get_layout
 
-    before_filter :get_model, except: RailsAdmin::Config::Actions.all(:root).collect(&:action_name)
-    before_filter :get_object, only: RailsAdmin::Config::Actions.all(:member).collect(&:action_name)
+    before_filter :get_model, except: MmoStarterKit::Config::Actions.all(:root).collect(&:action_name)
+    before_filter :get_object, only: MmoStarterKit::Config::Actions.all(:member).collect(&:action_name)
     before_filter :check_for_cancel
 
-    RailsAdmin::Config::Actions.all.each do |action|
+    MmoStarterKit::Config::Actions.all.each do |action|
       class_eval %{
         def #{action.action_name}
-          action = RailsAdmin::Config::Actions.find('#{action.action_name}'.to_sym)
+          action = MmoStarterKit::Config::Actions.find('#{action.action_name}'.to_sym)
           @authorization_adapter.try(:authorize, action.authorization_key, @abstract_model, @object)
           @action = action.with({controller: self, abstract_model: @abstract_model, object: @object})
           @page_name = wording_for(:title)
@@ -24,7 +24,7 @@ module MmoStarterKit
     end
 
     def bulk_action
-      send(params[:bulk_action]) if params[:bulk_action].in?(RailsAdmin::Config::Actions.all(controller: self, abstract_model: @abstract_model).select(&:bulkable?).collect(&:route_fragment))
+      send(params[:bulk_action]) if params[:bulk_action].in?(MmoStarterKit::Config::Actions.all(controller: self, abstract_model: @abstract_model).select(&:bulkable?).collect(&:route_fragment))
     end
 
     def list_entries(model_config = @model_config, auth_scope_key = :index, additional_scope = get_association_scope_from_params, pagination = !(params[:associated_collection] || params[:all] || params[:bulk_ids]))
@@ -137,7 +137,7 @@ module MmoStarterKit
 
     def get_association_scope_from_params
       return nil unless params[:associated_collection].present?
-      source_abstract_model = RailsAdmin::AbstractModel.new(to_model_name(params[:source_abstract_model]))
+      source_abstract_model = MmoStarterKit::AbstractModel.new(to_model_name(params[:source_abstract_model]))
       source_model_config = source_abstract_model.config
       source_object = source_abstract_model.get(params[:source_object_id])
       action = params[:current_action].in?(%w[create update]) ? params[:current_action] : 'edit'

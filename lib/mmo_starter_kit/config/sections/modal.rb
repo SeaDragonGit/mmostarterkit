@@ -3,7 +3,7 @@ require 'rails_admin/config/sections/edit'
 module MmoStarterKit
   module Config
     module Sections
-      class Modal < RailsAdmin::Config::Sections::Edit
+      class Modal < MmoStarterKit::Config::Sections::Edit
       end
     end
   end

@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Wysihtml5 < RailsAdmin::Config::Fields::Types::Text
+        class Wysihtml5 < MmoStarterKit::Config::Fields::Types::Text
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           # If you want to have a different toolbar configuration for wysihtml5
           # you can use a Ruby hash to configure these options:

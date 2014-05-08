@@ -2,7 +2,7 @@ require 'rails_admin/i18n_support'
 
 module MmoStarterKit
   module ApplicationHelper
-    include RailsAdmin::I18nSupport
+    include MmoStarterKit::I18nSupport
 
     def authorized?(action, abstract_model = nil, object = nil)
       object = nil if object.try :new_record?
@@ -16,17 +16,17 @@ module MmoStarterKit
     end
 
     def action(key, abstract_model = nil, object = nil)
-      RailsAdmin::Config::Actions.find(key, controller: controller, abstract_model: abstract_model, object: object)
+      MmoStarterKit::Config::Actions.find(key, controller: controller, abstract_model: abstract_model, object: object)
     end
 
     def actions(scope = :all, abstract_model = nil, object = nil)
-      RailsAdmin::Config::Actions.all(scope, controller: controller, abstract_model: abstract_model, object: object)
+      MmoStarterKit::Config::Actions.all(scope, controller: controller, abstract_model: abstract_model, object: object)
     end
 
     def edit_user_link
       return nil unless authorized?(:edit, _current_user.class, _current_user) && _current_user.respond_to?(:email)
       return nil unless abstract_model = RailsAdmin.config(_current_user.class).abstract_model
-      return nil unless edit_action = RailsAdmin::Config::Actions.find(:edit, controller: controller, abstract_model: abstract_model, object: _current_user)
+      return nil unless edit_action = MmoStarterKit::Config::Actions.find(:edit, controller: controller, abstract_model: abstract_model, object: _current_user)
       link_to _current_user.email, url_for(action: edit_action.action_name, model_name: abstract_model.to_param, id: _current_user.id, controller: 'mmo_starter_kit/main')
     end
 
@@ -40,7 +40,7 @@ module MmoStarterKit
     def wording_for(label, action = @action, abstract_model = @abstract_model, object = @object)
       model_config = abstract_model.try(:config)
       object = abstract_model && object.is_a?(abstract_model.model) ? object : nil
-      action = RailsAdmin::Config::Actions.find(action.to_sym) if action.is_a?(Symbol) || action.is_a?(String)
+      action = MmoStarterKit::Config::Actions.find(action.to_sym) if action.is_a?(Symbol) || action.is_a?(String)
 
       I18n.t("admin.actions.#{action.i18n_key}.#{label}",
              model_label: model_config && model_config.label,
@@ -50,7 +50,7 @@ module MmoStarterKit
     end
 
     def main_navigation
-      nodes_stack = RailsAdmin::Config.visible_models(controller: controller)
+      nodes_stack = MmoStarterKit::Config.visible_models(controller: controller)
       node_model_names = nodes_stack.collect { |c| c.abstract_model.model_name }
 
       nodes_stack.group_by(&:navigation_label).collect do |navigation_label, nodes|
@@ -64,11 +64,11 @@ module MmoStarterKit
     end
 
     def static_navigation
-      li_stack = RailsAdmin::Config.navigation_static_links.collect do |title, url|
+      li_stack = MmoStarterKit::Config.navigation_static_links.collect do |title, url|
         content_tag(:li, link_to(title.to_s, url, target: '_blank'))
       end.join
 
-      label = RailsAdmin::Config.navigation_static_label || t('admin.misc.navigation_static_label')
+      label = MmoStarterKit::Config.navigation_static_label || t('admin.misc.navigation_static_label')
       li_stack = %(<li class='nav-header'>#{label}</li>#{li_stack}).html_safe if li_stack.present?
       li_stack
     end

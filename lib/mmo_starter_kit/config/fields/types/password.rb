@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Password < RailsAdmin::Config::Fields::Types::String
+        class Password < MmoStarterKit::Config::Fields::Types::String
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :view_helper do
             :password_field
@@ -26,7 +26,7 @@ module MmoStarterKit
           end
 
           register_instance_option :visible do
-            section.is_a?(RailsAdmin::Config::Sections::Edit)
+            section.is_a?(MmoStarterKit::Config::Sections::Edit)
           end
 
           register_instance_option :pretty_value do

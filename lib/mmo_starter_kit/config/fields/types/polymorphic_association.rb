@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class PolymorphicAssociation < RailsAdmin::Config::Fields::Types::BelongsToAssociation
+        class PolymorphicAssociation < MmoStarterKit::Config::Fields::Types::BelongsToAssociation
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :partial do
             :form_polymorphic_association

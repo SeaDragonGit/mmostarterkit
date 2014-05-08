@@ -4,8 +4,8 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Hidden < RailsAdmin::Config::Fields::Base
-          RailsAdmin::Config::Fields::Types.register(self)
+        class Hidden < MmoStarterKit::Config::Fields::Base
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :view_helper do
             :hidden_field

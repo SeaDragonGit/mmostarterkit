@@ -1,12 +1,12 @@
-require 'rails_admin/engine'
-require 'rails_admin/abstract_model'
-require 'rails_admin/config'
-require 'rails_admin/extension'
-require 'rails_admin/extensions/cancan'
-require 'rails_admin/extensions/paper_trail'
-require 'rails_admin/extensions/history'
-require 'rails_admin/support/csv_converter'
-require 'rails_admin/support/core_extensions'
+require 'mmo_starter_kit/engine'
+require 'mmo_starter_kit/abstract_model'
+require 'mmo_starter_kit/config'
+require 'mmo_starter_kit/extension'
+require 'mmo_starter_kit/extensions/cancan'
+require 'mmo_starter_kit/extensions/paper_trail'
+require 'mmo_starter_kit/extensions/history'
+require 'mmo_starter_kit/support/csv_converter'
+require 'mmo_starter_kit/support/core_extensions'
 
 module MmoStarterKit
   # Setup RailsAdmin
@@ -19,18 +19,18 @@ module MmoStarterKit
   # initialization has already occured (in other words RailsAdmin.setup has
   # been called) the block will be added to stack and evaluated at once.
   #
-  # Otherwise returns RailsAdmin::Config class.
+  # Otherwise returns MmoStarterKit::Config class.
   #
-  # @see RailsAdmin::Config
+  # @see MmoStarterKit::Config
   def self.config(entity = nil, &block)
     if entity
-      RailsAdmin::Config.model(entity, &block)
+      MmoStarterKit::Config.model(entity, &block)
     elsif block_given?
-      block.call(RailsAdmin::Config)
+      block.call(MmoStarterKit::Config)
     else
-      RailsAdmin::Config
+      MmoStarterKit::Config
     end
   end
 end
 
-require 'rails_admin/bootstrap-sass' unless defined? Bootstrap
+require 'mmo_starter_kit/bootstrap-sass' unless defined? Bootstrap

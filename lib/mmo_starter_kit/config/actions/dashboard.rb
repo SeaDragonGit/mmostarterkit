@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class Dashboard < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class Dashboard < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :root? do
           true
@@ -16,7 +16,7 @@ module MmoStarterKit
           proc do
             @history = @auditing_adapter && @auditing_adapter.latest || []
             if @action.statistics?
-              @abstract_models = RailsAdmin::Config.visible_models(controller: self).collect(&:abstract_model)
+              @abstract_models = MmoStarterKit::Config.visible_models(controller: self).collect(&:abstract_model)
 
               @most_recent_changes = {}
               @count = {}

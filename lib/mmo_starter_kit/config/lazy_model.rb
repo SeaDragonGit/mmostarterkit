@@ -10,7 +10,7 @@ module MmoStarterKit
 
       def method_missing(method, *args, &block)
         unless @model
-          @model = RailsAdmin::Config::Model.new(@entity)
+          @model = MmoStarterKit::Config::Model.new(@entity)
           @model.instance_eval(&@deferred_block) if @deferred_block
         end
 

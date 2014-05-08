@@ -70,11 +70,11 @@ module MmoStarterKit
           # do nothing
         end
 
-        def listing_for_model(model, query, sort, sort_reverse, all, page, per_page = (RailsAdmin::Config.default_items_per_page || 20))
+        def listing_for_model(model, query, sort, sort_reverse, all, page, per_page = (MmoStarterKit::Config.default_items_per_page || 20))
           listing_for_model_or_object(model, nil, query, sort, sort_reverse, all, page, per_page)
         end
 
-        def listing_for_object(model, object, query, sort, sort_reverse, all, page, per_page = (RailsAdmin::Config.default_items_per_page || 20))
+        def listing_for_object(model, object, query, sort, sort_reverse, all, page, per_page = (MmoStarterKit::Config.default_items_per_page || 20))
           listing_for_model_or_object(model, object, query, sort, sort_reverse, all, page, per_page)
         end
 

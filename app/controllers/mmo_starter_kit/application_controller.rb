@@ -20,13 +20,13 @@ module MmoStarterKit
 
     def get_model
       @model_name = to_model_name(params[:model_name])
-      fail(RailsAdmin::ModelNotFound) unless (@abstract_model = RailsAdmin::AbstractModel.new(@model_name))
-      fail(RailsAdmin::ModelNotFound) if (@model_config = @abstract_model.config).excluded?
+      fail(MmoStarterKit::ModelNotFound) unless (@abstract_model = MmoStarterKit::AbstractModel.new(@model_name))
+      fail(MmoStarterKit::ModelNotFound) if (@model_config = @abstract_model.config).excluded?
       @properties = @abstract_model.properties
     end
 
     def get_object
-      fail(RailsAdmin::ObjectNotFound) unless (@object = @abstract_model.get(params[:id]))
+      fail(MmoStarterKit::ObjectNotFound) unless (@object = @abstract_model.get(params[:id]))
     end
 
     def to_model_name(param)
@@ -40,30 +40,30 @@ module MmoStarterKit
     end
 
     def _authenticate!
-      instance_eval(&RailsAdmin::Config.authenticate_with)
+      instance_eval(&MmoStarterKit::Config.authenticate_with)
     end
 
     def _authorize!
-      instance_eval(&RailsAdmin::Config.authorize_with)
+      instance_eval(&MmoStarterKit::Config.authorize_with)
     end
 
     def _audit!
-      instance_eval(&RailsAdmin::Config.audit_with)
+      instance_eval(&MmoStarterKit::Config.audit_with)
     end
 
     def _current_user
-      instance_eval(&RailsAdmin::Config.current_user_method)
+      instance_eval(&MmoStarterKit::Config.current_user_method)
     end
 
     alias_method :user_for_paper_trail, :_current_user
 
-    rescue_from RailsAdmin::ObjectNotFound do
+    rescue_from MmoStarterKit::ObjectNotFound do
       flash[:error] = I18n.t('admin.flash.object_not_found', model: @model_name, id: params[:id])
       params[:action] = 'index'
       index
     end
 
-    rescue_from RailsAdmin::ModelNotFound do
+    rescue_from MmoStarterKit::ModelNotFound do
       flash[:error] = I18n.t('admin.flash.model_not_found', model: @model_name)
       params[:action] = 'dashboard'
       dashboard

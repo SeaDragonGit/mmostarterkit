@@ -10,8 +10,8 @@ module MmoStarterKit
     # This is valid for custom warden setups, and also devise
     # If you're using the admin setup for devise, you should set RailsAdmin to use the admin
     #
-    # @see RailsAdmin::Config.authenticate_with
-    # @see RailsAdmin::Config.authorize_with
+    # @see MmoStarterKit::Config.authenticate_with
+    # @see MmoStarterKit::Config.authorize_with
     DEFAULT_AUTHENTICATION = proc {}
 
     DEFAULT_AUTHORIZE = proc {}
@@ -88,7 +88,7 @@ module MmoStarterKit
       #     end
       #   end
       #
-      # @see RailsAdmin::Config::DEFAULT_AUTHENTICATION
+      # @see MmoStarterKit::Config::DEFAULT_AUTHENTICATION
       def authenticate_with(&blk)
         @authenticate = blk if blk
         @authenticate || DEFAULT_AUTHENTICATION
@@ -99,7 +99,7 @@ module MmoStarterKit
         extension = args.shift
         if extension
           @audit = proc do
-            @auditing_adapter = RailsAdmin::AUDITING_ADAPTERS[extension].new(*([self] + args).compact)
+            @auditing_adapter = MmoStarterKit::AUDITING_ADAPTERS[extension].new(*([self] + args).compact)
           end
         else
           @audit = block if block
@@ -129,12 +129,12 @@ module MmoStarterKit
       #
       # See the wiki[https://github.com/sferik/mmo_starter_kit/wiki] for more on authorization.
       #
-      # @see RailsAdmin::Config::DEFAULT_AUTHORIZE
+      # @see MmoStarterKit::Config::DEFAULT_AUTHORIZE
       def authorize_with(*args, &block)
         extension = args.shift
         if extension
           @authorize = proc do
-            @authorization_adapter = RailsAdmin::AUTHORIZATION_ADAPTERS[extension].new(*([self] + args).compact)
+            @authorization_adapter = MmoStarterKit::AUTHORIZATION_ADAPTERS[extension].new(*([self] + args).compact)
           end
         else
           @authorize = block if block
@@ -155,7 +155,7 @@ module MmoStarterKit
       #     end
       #   end
       def configure_with(extension)
-        configuration = RailsAdmin::CONFIGURATION_ADAPTERS[extension].new
+        configuration = MmoStarterKit::CONFIGURATION_ADAPTERS[extension].new
         yield(configuration) if block_given?
       end
 
@@ -171,7 +171,7 @@ module MmoStarterKit
       #     end
       #   end
       #
-      # @see RailsAdmin::Config::DEFAULT_CURRENT_USER
+      # @see MmoStarterKit::Config::DEFAULT_CURRENT_USER
       def current_user_method(&block)
         @current_user = block if block
         @current_user || DEFAULT_CURRENT_USER
@@ -187,7 +187,7 @@ module MmoStarterKit
 
       # pool of all found model names from the whole application
       def models_pool
-        excluded = (excluded_models.collect(&:to_s) + ['RailsAdmin::History'])
+        excluded = (excluded_models.collect(&:to_s) + ['MmoStarterKit::History'])
 
         (viable_models - excluded).uniq.sort
       end
@@ -196,17 +196,17 @@ module MmoStarterKit
       # a new one if one is yet to be added.
       #
       # First argument can be an instance of requested model, its class object,
-      # its class name as a string or symbol or a RailsAdmin::AbstractModel
+      # its class name as a string or symbol or a MmoStarterKit::AbstractModel
       # instance.
       #
       # If a block is given it is evaluated in the context of configuration instance.
       #
       # Returns given model's configuration
       #
-      # @see RailsAdmin::Config.registry
+      # @see MmoStarterKit::Config.registry
       def model(entity, &block)
         key = begin
-          if entity.kind_of?(RailsAdmin::AbstractModel)
+          if entity.kind_of?(MmoStarterKit::AbstractModel)
             entity.model.try(:name).try :to_sym
           elsif entity.kind_of?(Class)
             entity.name.to_sym
@@ -218,9 +218,9 @@ module MmoStarterKit
         end
 
         if block
-          @registry[key] = RailsAdmin::Config::LazyModel.new(entity, &block)
+          @registry[key] = MmoStarterKit::Config::LazyModel.new(entity, &block)
         else
-          @registry[key] ||= RailsAdmin::Config::LazyModel.new(entity)
+          @registry[key] ||= MmoStarterKit::Config::LazyModel.new(entity)
         end
       end
 
@@ -236,19 +236,19 @@ module MmoStarterKit
 
       # Returns action configuration object
       def actions(&block)
-        RailsAdmin::Config::Actions.instance_eval(&block) if block
+        MmoStarterKit::Config::Actions.instance_eval(&block) if block
       end
 
       # Returns all model configurations
       #
-      # @see RailsAdmin::Config.registry
+      # @see MmoStarterKit::Config.registry
       def models
-        RailsAdmin::AbstractModel.all.collect { |m| model(m) }
+        MmoStarterKit::AbstractModel.all.collect { |m| model(m) }
       end
 
       # Reset all configurations to defaults.
       #
-      # @see RailsAdmin::Config.registry
+      # @see MmoStarterKit::Config.registry
       def reset
         @compact_show_view = true
         @yell_for_non_accessible_fields = true
@@ -271,12 +271,12 @@ module MmoStarterKit
         @registry = {}
         @navigation_static_links = {}
         @navigation_static_label = nil
-        RailsAdmin::Config::Actions.reset
+        MmoStarterKit::Config::Actions.reset
       end
 
       # Reset a provided model's configuration.
       #
-      # @see RailsAdmin::Config.registry
+      # @see MmoStarterKit::Config.registry
       def reset_model(model)
         key = model.kind_of?(Class) ? model.name.to_sym : model.to_sym
         @registry.delete(key)
@@ -284,7 +284,7 @@ module MmoStarterKit
 
       # Get all models that are configured as visible sorted by their weight and label.
       #
-      # @see RailsAdmin::Config::Hideable
+      # @see MmoStarterKit::Config::Hideable
 
       def visible_models(bindings)
         visible_models_with_bindings(bindings).sort do |a, b|

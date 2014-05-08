@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Timestamp < RailsAdmin::Config::Fields::Types::Datetime
+        class Timestamp < MmoStarterKit::Config::Fields::Types::Datetime
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           @format = :long
           @i18n_scope = [:time, :formats]

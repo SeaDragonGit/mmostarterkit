@@ -5,10 +5,10 @@ module MmoStarterKit
     # Inspired by Kaminari
     def self.load!
       if compass?
-        require 'rails_admin/bootstrap-sass/compass_functions'
+        require 'mmo_starter_kit/bootstrap-sass/compass_functions'
         register_compass_extension
       elsif asset_pipeline?
-        require 'rails_admin/bootstrap-sass/sass_functions'
+        require 'mmo_starter_kit/bootstrap-sass/sass_functions'
       end
 
       require 'sass-rails' if rails?
@@ -44,4 +44,4 @@ module MmoStarterKit
   end
 end
 
-RailsAdmin::Bootstrap.load!
+MmoStarterKit::Bootstrap.load!

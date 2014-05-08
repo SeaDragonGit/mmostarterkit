@@ -1,4 +1,4 @@
 if defined?(::Mongoid::Document)
-  require 'rails_admin/adapters/mongoid/extension'
-  Mongoid::Document.send(:include, RailsAdmin::Adapters::Mongoid::Extension)
+  require 'mmo_starter_kit/adapters/mongoid/extension'
+  Mongoid::Document.send(:include, MmoStarterKit::Adapters::Mongoid::Extension)
 end

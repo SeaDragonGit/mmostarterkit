@@ -5,7 +5,7 @@ module MmoStarterKit
       attr_accessor :bindings
 
       def with(bindings = {})
-        RailsAdmin::Config::Proxyable::Proxy.new(self, bindings)
+        MmoStarterKit::Config::Proxyable::Proxy.new(self, bindings)
       end
     end
   end

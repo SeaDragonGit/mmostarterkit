@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class Edit < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class Edit < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :member do
           true

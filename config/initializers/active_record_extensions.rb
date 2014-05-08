@@ -1,11 +1,11 @@
 if defined?(::ActiveRecord)
   module ActiveRecord
     class Base
-      def self.rails_admin(&block)
-        RailsAdmin.config(self, &block)
+      def self.mmo_starter_kit(&block)
+        MmoStarterKit.config(self, &block)
       end
 
-      def rails_admin_default_object_label_method
+      def mmo_starter_kit_default_object_label_method
         self.new_record? ? "new #{self.class}" : "#{self.class} ##{id}"
       end
 

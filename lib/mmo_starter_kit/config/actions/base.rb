@@ -6,9 +6,9 @@ module MmoStarterKit
   module Config
     module Actions
       class Base
-        include RailsAdmin::Config::Proxyable
-        include RailsAdmin::Config::Configurable
-        include RailsAdmin::Config::Hideable
+        include MmoStarterKit::Config::Proxyable
+        include MmoStarterKit::Config::Configurable
+        include MmoStarterKit::Config::Hideable
 
         register_instance_option :only do
           nil

@@ -7,10 +7,10 @@ module MmoStarterKit
   module Config
     module Fields
       class Base
-        include RailsAdmin::Config::Proxyable
-        include RailsAdmin::Config::Configurable
-        include RailsAdmin::Config::Hideable
-        include RailsAdmin::Config::Groupable
+        include MmoStarterKit::Config::Proxyable
+        include MmoStarterKit::Config::Configurable
+        include MmoStarterKit::Config::Hideable
+        include MmoStarterKit::Config::Groupable
 
         attr_reader :name, :properties, :abstract_model
         attr_accessor :defined, :order, :section
@@ -61,7 +61,7 @@ module MmoStarterKit
         end
 
         register_instance_option :search_operator do
-          @search_operator ||= RailsAdmin::Config.default_search_operator
+          @search_operator ||= MmoStarterKit::Config.default_search_operator
         end
 
         # serials and dates are reversed in list, which is more natural (last modified items first).
@@ -132,7 +132,7 @@ module MmoStarterKit
 
         # Accessor for field's label.
         #
-        # @see RailsAdmin::AbstractModel.properties
+        # @see MmoStarterKit::AbstractModel.properties
         register_instance_option :label do
           (@label ||= {})[::I18n.locale] ||= abstract_model.model.human_attribute_name name
         end
@@ -143,7 +143,7 @@ module MmoStarterKit
 
         # Accessor for field's maximum length per database.
         #
-        # @see RailsAdmin::AbstractModel.properties
+        # @see MmoStarterKit::AbstractModel.properties
         register_instance_option :length do
           @length ||= properties && properties.length
         end
@@ -160,7 +160,7 @@ module MmoStarterKit
 
         # Accessor for whether this is field is mandatory.
         #
-        # @see RailsAdmin::AbstractModel.properties
+        # @see MmoStarterKit::AbstractModel.properties
         register_instance_option :required? do
           context = if bindings && bindings[:object]
             bindings[:object].persisted? ? :update : :create
@@ -178,7 +178,7 @@ module MmoStarterKit
 
         # Accessor for whether this is a serial field (aka. primary key, identifier).
         #
-        # @see RailsAdmin::AbstractModel.properties
+        # @see MmoStarterKit::AbstractModel.properties
         register_instance_option :serial? do
           properties && properties.serial?
         end
@@ -199,7 +199,7 @@ module MmoStarterKit
         register_instance_option :visible? do
           returned = true
           (RailsAdmin.config.default_hidden_fields || {}).each do |section, fields|
-            if self.section.is_a?("RailsAdmin::Config::Sections::#{section.to_s.camelize}".constantize)
+            if self.section.is_a?("MmoStarterKit::Config::Sections::#{section.to_s.camelize}".constantize)
               returned = false if fields.include?(name)
             end
           end
@@ -221,7 +221,7 @@ module MmoStarterKit
 
         # Is this an association
         def association?
-          kind_of?(RailsAdmin::Config::Fields::Association)
+          kind_of?(MmoStarterKit::Config::Fields::Association)
         end
 
         # Reader for validation errors of the bound object
@@ -233,14 +233,14 @@ module MmoStarterKit
 
         # Reader whether field is optional.
         #
-        # @see RailsAdmin::Config::Fields::Base.register_instance_option :required?
+        # @see MmoStarterKit::Config::Fields::Base.register_instance_option :required?
         def optional?
           !required?
         end
 
         # Inverse accessor whether this field is required.
         #
-        # @see RailsAdmin::Config::Fields::Base.register_instance_option :required?
+        # @see MmoStarterKit::Config::Fields::Base.register_instance_option :required?
         def optional(state = nil, &block)
           if !state.nil? || block # rubocop:disable NonNilCheck
             required state.nil? ? proc { false == (instance_eval(&block)) } : false == state
@@ -251,7 +251,7 @@ module MmoStarterKit
 
         # Writer to make field optional.
         #
-        # @see RailsAdmin::Config::Fields::Base.optional
+        # @see MmoStarterKit::Config::Fields::Base.optional
         def optional=(state)
           optional(state)
         end

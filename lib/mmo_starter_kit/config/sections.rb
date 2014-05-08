@@ -22,7 +22,7 @@ module MmoStarterKit
       def self.included(klass)
         # Register accessors for all the sections in this namespace
         constants.each do |name|
-          section = RailsAdmin::Config::Sections.const_get(name)
+          section = MmoStarterKit::Config::Sections.const_get(name)
           name = name.to_s.underscore.to_sym
           klass.send(:define_method, name) do |&block|
             @sections = {} unless @sections

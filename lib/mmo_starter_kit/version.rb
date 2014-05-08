@@ -1,8 +1,8 @@
 module MmoStarterKit
   class Version
     MAJOR = 0
-    MINOR = 6
-    PATCH = 2
+    MINOR = 0
+    PATCH = 1
     PRE = nil
 
     class << self

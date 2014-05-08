@@ -44,7 +44,7 @@ module MmoStarterKit
         end
 
         def add_action(key, parent_class, parent, &block)
-          a = "RailsAdmin::Config::Actions::#{parent_class.to_s.camelize}".constantize.new
+          a = "MmoStarterKit::Config::Actions::#{parent_class.to_s.camelize}".constantize.new
           a.instance_eval(%(
             #{parent} true
             def key

@@ -400,10 +400,10 @@ module MmoStarterKit
 
         delegate :macro, :options, to: :association, prefix: false
         delegate :nested_attributes_options, to: :model, prefix: false
-        delegate :polymorphic_parents, to: RailsAdmin::AbstractModel
+        delegate :polymorphic_parents, to: MmoStarterKit::AbstractModel
       end
 
-      class StatementBuilder < RailsAdmin::AbstractModel::StatementBuilder
+      class StatementBuilder < MmoStarterKit::AbstractModel::StatementBuilder
       protected
 
         def unary_operators

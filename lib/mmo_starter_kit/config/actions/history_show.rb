@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class HistoryShow < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class HistoryShow < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :authorization_key do
           :history

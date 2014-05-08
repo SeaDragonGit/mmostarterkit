@@ -4,8 +4,8 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class String < RailsAdmin::Config::Fields::Base
-          RailsAdmin::Config::Fields::Types.register(self)
+        class String < MmoStarterKit::Config::Fields::Base
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :html_attributes do
             {

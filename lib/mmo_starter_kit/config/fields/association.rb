@@ -4,7 +4,7 @@ require 'rails_admin/config/fields/base'
 module MmoStarterKit
   module Config
     module Fields
-      class Association < RailsAdmin::Config::Fields::Base
+      class Association < MmoStarterKit::Config::Fields::Base
         def self.inherited(klass)
           super(klass)
         end

@@ -251,10 +251,10 @@ module MmoStarterKit
         end
 
         delegate :options, :scope, to: :association, prefix: false
-        delegate :polymorphic_parents, to: RailsAdmin::AbstractModel
+        delegate :polymorphic_parents, to: MmoStarterKit::AbstractModel
       end
 
-      class StatementBuilder < RailsAdmin::AbstractModel::StatementBuilder
+      class StatementBuilder < MmoStarterKit::AbstractModel::StatementBuilder
       protected
 
         def unary_operators

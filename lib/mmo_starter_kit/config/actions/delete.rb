@@ -1,8 +1,8 @@
 module MmoStarterKit
   module Config
     module Actions
-      class Delete < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
+      class Delete < MmoStarterKit::Config::Actions::Base
+        MmoStarterKit::Config::Actions.register(self)
 
         register_instance_option :member do
           true

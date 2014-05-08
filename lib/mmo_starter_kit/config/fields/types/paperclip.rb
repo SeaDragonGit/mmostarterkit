@@ -6,8 +6,8 @@ module MmoStarterKit
     module Fields
       module Types
         # Field type that supports Paperclip file uploads
-        class Paperclip < RailsAdmin::Config::Fields::Types::FileUpload
-          RailsAdmin::Config::Fields::Types.register(self)
+        class Paperclip < MmoStarterKit::Config::Fields::Types::FileUpload
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           register_instance_option :delete_method do
             "delete_#{name}" if bindings[:object].respond_to?("delete_#{name}")

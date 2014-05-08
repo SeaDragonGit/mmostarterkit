@@ -5,16 +5,16 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Datetime < RailsAdmin::Config::Fields::Base
+        class Datetime < MmoStarterKit::Config::Fields::Base
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
 
           @format = :long
           @i18n_scope = [:time, :formats]
           @js_plugin_options = {}
 
           class << self
-            include RailsAdmin::I18nSupport
+            include MmoStarterKit::I18nSupport
 
             attr_reader :format, :i18n_scope, :js_plugin_options
 

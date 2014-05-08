@@ -13,10 +13,10 @@ module MmoStarterKit
   module Config
     # Model specific configuration object.
     class Model
-      include RailsAdmin::Config::Proxyable
-      include RailsAdmin::Config::Configurable
-      include RailsAdmin::Config::Hideable
-      include RailsAdmin::Config::Sections
+      include MmoStarterKit::Config::Proxyable
+      include MmoStarterKit::Config::Configurable
+      include MmoStarterKit::Config::Hideable
+      include MmoStarterKit::Config::Sections
 
       attr_reader :abstract_model
       attr_accessor :groups
@@ -27,19 +27,19 @@ module MmoStarterKit
         @root = self
 
         @abstract_model = begin
-          if entity.kind_of?(RailsAdmin::AbstractModel)
+          if entity.kind_of?(MmoStarterKit::AbstractModel)
             entity
           elsif entity.kind_of?(Class) || entity.kind_of?(String) || entity.kind_of?(Symbol)
-            RailsAdmin::AbstractModel.new(entity)
+            MmoStarterKit::AbstractModel.new(entity)
           else
-            RailsAdmin::AbstractModel.new(entity.class)
+            MmoStarterKit::AbstractModel.new(entity.class)
           end
         end
-        @groups = [RailsAdmin::Config::Fields::Group.new(self, :default).tap { |g| g.label { I18n.translate('admin.form.basic_info') } }]
+        @groups = [MmoStarterKit::Config::Fields::Group.new(self, :default).tap { |g| g.label { I18n.translate('admin.form.basic_info') } }]
       end
 
       def excluded?
-        @excluded ||= !RailsAdmin::AbstractModel.all.collect(&:model_name).include?(abstract_model.try(:model_name))
+        @excluded ||= !MmoStarterKit::AbstractModel.all.collect(&:model_name).include?(abstract_model.try(:model_name))
       end
 
       def object_label

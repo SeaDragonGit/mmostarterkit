@@ -4,9 +4,9 @@ module MmoStarterKit
   module Config
     module Fields
       module Types
-        class Float < RailsAdmin::Config::Fields::Base
+        class Float < MmoStarterKit::Config::Fields::Base
           # Register field type for the type loader
-          RailsAdmin::Config::Fields::Types.register(self)
+          MmoStarterKit::Config::Fields::Types.register(self)
         end
       end
     end
